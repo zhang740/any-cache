@@ -17,11 +17,13 @@
   },
   "devDependencies": {
     "autod": "^3.0.1",
-    "rimraf": "^2.6.2",
     "ava": "^0.24.0",
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
     "coveralls": "^3.0.0",
     "nyc": "^11.4.1",
     "react-test-renderer": "^16.2.0",
+    "rimraf": "^2.6.2",
     "tslint": "^5.8.0",
     "typescript": "^2.6.2",
     "webpack": "^3.10.0"
@@ -44,7 +46,7 @@
     "coverage:report": "nyc report --reporter=lcov",
     "coverage:upload": "cat ./coverage/lcov.info | coveralls",
     "report": "npm run coverage && npm run coverage:report",
-    "prepublish": "npm run clean && npm run test && npm run build:dist",
+    "prepublish": "npm run clean && npm run test",
     "postpublish": "node scripts/published.js"
   },
   "ava": {
