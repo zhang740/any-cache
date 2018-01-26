@@ -9,6 +9,7 @@
     "preserveConstEnums": true,
     "declaration": true,
     "sourceMap": true,
+    "removeComments": false,
     "pretty": true
   },
   "compileOnSave": true

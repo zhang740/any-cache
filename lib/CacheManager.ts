@@ -4,9 +4,9 @@ import { MemoryStore } from './MemoryStore';
 
 export class CacheConfig {
   /** seconds, -1: is not expired */
-  time: number = -1;
+  expiredTime?: number = -1;
   /** refresh time of every get */
-  autoRefresh: boolean = true;
+  autoRefresh?: boolean = true;
 }
 
 export interface ICacheData {
@@ -44,7 +44,7 @@ export class CacheManager {
   async put<T = any>(key: string, value: T, config: CacheConfig) {
     return this.store.put(key, {
       value,
-      expireTime: config.time > 0 ? +Date.now() + config.time * 1000 : -1,
+      expireTime: config.expiredTime > 0 ? +Date.now() + config.expiredTime * 1000 : -1,
       config
     });
   }

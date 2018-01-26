@@ -25,9 +25,9 @@ test('base test', async t => {
 
 test('expire time', async t => {
   const cacheManager = new CacheManager();
-  const config = {
+  const config: CacheConfig = {
     ...new CacheConfig,
-    time: 0.2,
+    expiredTime: 0.2,
   };
   await cacheManager.put('test', 123123, config);
   wait(100);
