@@ -9,19 +9,19 @@ function wait(time: number) {
 }
 
 test('base test', async t => {
-  const helper = getDecorators();
+  const { cachePut, cacheEvict } = getDecorators();
 
   class TestCls {
-    @helper.cachePut('text')
+    @cachePut('text')
     async text(t: string) { return t; }
 
-    @helper.cacheEvict('text')
+    @cacheEvict('text')
     async evictText(t: string) { return t; }
 
-    @helper.cachePut((desc: string) => `desc_${desc}`)
+    @cachePut((desc: string) => `desc_${desc}`)
     async desc(desc: string, sub: string = '') { return desc + sub; }
 
-    @helper.cacheEvict((desc: string) => `desc_${desc}`)
+    @cacheEvict((desc: string) => `desc_${desc}`)
     async evictDesc(desc: string) { }
   }
 
@@ -40,13 +40,13 @@ test('base test', async t => {
 
 test('no evict when error', async t => {
   const cacheManager = new CacheManager;
-  const helper = new Decorators(undefined, cacheManager);
+  const { cacheEvict, cachePut } = new Decorators(undefined, cacheManager);
 
   class TestCls {
-    @helper.cachePut((a: number) => `desc_${a}`)
+    @cachePut((a: number) => `desc_${a}`)
     async desc(a: number, desc: string) { return desc; }
 
-    @helper.cacheEvict((a: number) => `desc_${a}`)
+    @cacheEvict((a: number) => `desc_${a}`)
     async deleteErr(a: number) { throw new Error; }
   }
 
@@ -59,16 +59,16 @@ test('no evict when error', async t => {
 
 test('comine', async t => {
   const cacheManager = new CacheManager;
-  const helper = getDecorators(undefined, cacheManager);
+  const { cachePut, cacheEvict } = getDecorators(undefined, cacheManager);
 
   class TestCls {
-    @helper.cachePut('info1')
+    @cachePut('info1')
     async info1(t: string) { return t; }
 
-    @helper.cachePut('info2')
+    @cachePut('info2')
     async info2(t: string) { return t; }
 
-    @helper.cacheEvict(['info1', () => 'info2'])
+    @cacheEvict(['info1', () => 'info2'])
     async delete() { }
   }
 

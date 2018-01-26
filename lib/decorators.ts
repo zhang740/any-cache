@@ -9,6 +9,8 @@ export class Decorators {
     private ioc: IocContext = IocContext.DefaultInstance,
     private cacheManager?: CacheManager
   ) {
+    this.cacheEvict = this.cacheEvict.bind(this);
+    this.cachePut = this.cachePut.bind(this);
   }
 
   public cachePut(cacheKey: CacheKeyType, config?: CacheConfig) {
