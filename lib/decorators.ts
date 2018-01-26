@@ -11,7 +11,7 @@ export class Decorators {
   ) {
   }
 
-  public cache(cacheKey: CacheKeyType, config?: CacheConfig) {
+  public cachePut(cacheKey: CacheKeyType, config?: CacheConfig) {
     config = { ...new CacheConfig, ...config };
     const cacheManager = this.getCacheManager();
 

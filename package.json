@@ -1,12 +1,13 @@
 {
   "name": "any-cache",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "common cache lib for js/ts",
   "keywords": [
     "cache",
     "ioc"
   ],
   "main": "./lib/index.js",
+  "types": "./lib/index.d.ts",
   "files": [
     "lib/*.js",
     "lib/*.d.ts",

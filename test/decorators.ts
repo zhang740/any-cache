@@ -12,13 +12,13 @@ test('base test', async t => {
   const helper = getDecorators();
 
   class TestCls {
-    @helper.cache('text')
+    @helper.cachePut('text')
     async text(t: string) { return t; }
 
     @helper.cacheEvict('text')
     async evictText(t: string) { return t; }
 
-    @helper.cache((desc: string) => `desc_${desc}`)
+    @helper.cachePut((desc: string) => `desc_${desc}`)
     async desc(desc: string, sub: string = '') { return desc + sub; }
 
     @helper.cacheEvict((desc: string) => `desc_${desc}`)
@@ -43,7 +43,7 @@ test('no evict when error', async t => {
   const helper = new Decorators(undefined, cacheManager);
 
   class TestCls {
-    @helper.cache((a: number) => `desc_${a}`)
+    @helper.cachePut((a: number) => `desc_${a}`)
     async desc(a: number, desc: string) { return desc; }
 
     @helper.cacheEvict((a: number) => `desc_${a}`)
@@ -62,10 +62,10 @@ test('comine', async t => {
   const helper = getDecorators(undefined, cacheManager);
 
   class TestCls {
-    @helper.cache('info1')
+    @helper.cachePut('info1')
     async info1(t: string) { return t; }
 
-    @helper.cache('info2')
+    @helper.cachePut('info2')
     async info2(t: string) { return t; }
 
     @helper.cacheEvict(['info1', () => 'info2'])
